@@ -11,10 +11,14 @@
     --cor-secundaria: #1d6b57;
     --cor-destaque: #d9822b;
     --cor-realce: #f2c14e;
+    color-scheme: light;
     --cor-fundo: #f6f8f6;
     --cor-superficie: #ffffff;
     --cor-texto: #24313a;
     --cor-texto-suave: #52616b;
+    --cor-borda: #68736e;
+    --cor-foco: #17324d;
+    --cor-link: #005a4f;
 
     /* Tipografia */
     --texto-pequeno: 0.875rem;
@@ -36,6 +40,19 @@
     --largura-formulario: 40rem;
     --borda-suave: 0.75rem;
     --sombra-card: 0 0.2rem 0.6rem rgb(23 50 77 / 8%);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+        --cor-fundo: #121715;
+        --cor-superficie: #1c2420;
+        --cor-texto: #f3f6f4;
+        --cor-texto-suave: #d1dbd5;
+        --cor-borda: #9aa8a0;
+        --cor-foco: #ffe066;
+        --cor-link: #8bdcc7;
+    }
 }
 
 /* 2. Regras gerais */
@@ -68,7 +85,7 @@ img {
 h1,
 h2,
 h3 {
-    color: var(--cor-primaria);
+    color: var(--cor-texto);
     line-height: 1.25;
 }
 
@@ -345,13 +362,13 @@ article {
 
 /* 7. Links do conteúdo */
 main a {
-    color: var(--cor-secundaria);
+    color: var(--cor-link);
     font-weight: 700;
     text-underline-offset: 0.2em;
 }
 
 main a:hover {
-    color: var(--cor-primaria);
+    color: var(--cor-link);
 }
 
 /* 8. Formulário */
@@ -381,7 +398,7 @@ fieldset {
 
 legend {
     padding-inline: var(--espaco-2);
-    color: var(--cor-primaria);
+    color: var(--cor-texto);
     font-weight: 700;
 }
 
@@ -397,7 +414,7 @@ textarea {
     width: 100%;
     min-height: 2.6rem;
     padding: var(--espaco-2) var(--espaco-3);
-    border: 1px solid var(--cor-texto-suave);
+    border: 1px solid var(--cor-borda);
     border-radius: 0.35rem;
     background-color: var(--cor-superficie);
     color: var(--cor-texto);
@@ -460,7 +477,7 @@ input[type="reset"]:hover {
 button:focus-visible,
 input[type="submit"]:focus-visible,
 input[type="reset"]:focus-visible {
-    outline: 3px solid var(--cor-realce);
+    outline: 3px solid var(--cor-foco);
     outline-offset: 3px;
 }
 
@@ -485,7 +502,7 @@ a:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-    outline: 3px solid var(--cor-realce);
+    outline: 3px solid var(--cor-foco);
     outline-offset: 3px;
 }
 
@@ -563,4 +580,47 @@ footer a {
   margin-top: 4px;
   color: #b42318;
   font-size: 0.9rem;
+}
+
+.pular-conteudo {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 1000;
+    padding: 0.75rem 1rem;
+    color: var(--cor-texto);
+    background-color: var(--cor-superficie);
+    transform: translateY(-200%);
+}
+
+.pular-conteudo:focus {
+    transform: translateY(0);
+}
+
+@media (prefers-contrast: more) {
+    :focus-visible {
+        outline-width: 4px;
+    }
+}
+
+@media (forced-colors: active) {
+    :focus-visible {
+        outline: 3px solid Highlight;
+    }
+}
+
+header .nome-ong {
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+header .menu-principal a {
+    color: #ffffff;
+}
+
+header .menu-principal a:hover {
+    color: #ffe066;
+    text-decoration: underline;
 }
