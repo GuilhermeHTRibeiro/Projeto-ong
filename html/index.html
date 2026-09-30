@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONG Holy Spirit</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+    <script type="module" src="../js/app.js"></script>
+ </head>
+ <body>
+    <header>
+        <img src="../imagens/logo-holy-spirit.png"
+         alt="Logotipo da ONG Holy Spirit">
+
+        <p class="nome-ong">ONG Holy Spirit</p>
+
+        <button
+         class="botao-menu"
+         type="button"
+         aria-controls="menu-principal"
+         aria-expanded="false">
+
+        <span aria-hidden="true">☰</span>
+        <span>Menu</span>
+        </button>
+        
+<nav class="menu-principal" id="menu-principal" aria-label="Navegação principal">
+  <ul class="lista-menu">
+    <li>
+      <a href="#inicio">Início</a>
+    </li>
+
+    <li class="item-com-submenu">
+      <a href="#projetos">Projetos</a>
+
+      <ul class="submenu">
+        <li><a href="#projetos/projeto-alimentar">Projeto Alimentar</a></li>
+        <li><a href="#projetos/projeto-educacao">Projeto Educação</a></li>
+        <li><a href="#projetos/projeto-discipulos">Gerando Discípulos</a></li>
+        <li><a href="#projetos/projeto-musical">Projeto Musical</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="#cadastro">Cadastro</a>
+    </li>
+  </ul>
+</nav>
+    </header>
+<main id="app" tabindex="-1">
+    <section>
+        <h1>Bem-vindo à ONG Holy Spirit</h1>
+        <p>
+            Trabalhamos para apoiar pessoas, transformar a comunidade
+            e levar a Palavra de Deus aos corações.
+        </p>
+    </section>
+
+    <section class="contato">
+    <h2>Entre em contato</h2>
+    <p>Entre em contato conosco para conhecer melhor o nosso trabalho.</p>
+</section>
+</main>
+
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+<footer>
+    <p>&copy; 2026 ONG Holy Spirit</p>
+</footer>
+</body>
+</html>

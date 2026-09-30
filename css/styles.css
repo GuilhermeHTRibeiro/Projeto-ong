@@ -1,0 +1,566 @@
+/*
+ * DESIGN SYSTEM: ONG HOLY SPIRIT
+ * Cores, tipografia e espaçamentos padronizados.
+ * Flexbox no cabeçalho e Grid nos cards de projetos.
+ */
+
+/* 1. Variáveis do Design System */
+:root {
+    /* Paleta de 8 cores */
+    --cor-primaria: #17324d;
+    --cor-secundaria: #1d6b57;
+    --cor-destaque: #d9822b;
+    --cor-realce: #f2c14e;
+    --cor-fundo: #f6f8f6;
+    --cor-superficie: #ffffff;
+    --cor-texto: #24313a;
+    --cor-texto-suave: #52616b;
+
+    /* Tipografia */
+    --texto-pequeno: 0.875rem;
+    --texto-base: 1rem;
+    --texto-medio: 1.125rem;
+    --texto-grande: 1.5rem;
+    --texto-titulo: 2rem;
+
+    /* Espaçamentos */
+    --espaco-1: 0.25rem;
+    --espaco-2: 0.5rem;
+    --espaco-3: 0.75rem;
+    --espaco-4: 1rem;
+    --espaco-5: 1.5rem;
+    --espaco-6: 2rem;
+
+    /* Larguras e acabamento */
+    --largura-conteudo: 64rem;
+    --largura-formulario: 40rem;
+    --borda-suave: 0.75rem;
+    --sombra-card: 0 0.2rem 0.6rem rgb(23 50 77 / 8%);
+}
+
+/* 2. Regras gerais */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    margin: 0;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: var(--texto-base);
+    line-height: 1.6;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+h1,
+h2,
+h3 {
+    color: var(--cor-primaria);
+    line-height: 1.25;
+}
+
+h1 {
+    margin: 0 0 var(--espaco-3);
+    font-size: clamp(1.65rem, 3vw, var(--texto-titulo));
+}
+
+h2 {
+    margin: 0 0 var(--espaco-4);
+    font-size: clamp(1.35rem, 2.5vw, var(--texto-grande));
+}
+
+h3 {
+    margin: 0;
+    font-size: var(--texto-medio);
+}
+
+p {
+    margin-top: 0;
+}
+
+small {
+    font-size: var(--texto-pequeno);
+}
+
+/* 3. Cabeçalho */
+header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: var(--espaco-4);
+    padding: var(--espaco-3) max(
+        1rem,
+        calc((100% - var(--largura-conteudo)) / 2)
+    );
+    background-color: var(--cor-primaria);
+    color: var(--cor-superficie);
+}
+
+/* Aplica ao logotipo que aparece diretamente dentro do cabeçalho */
+header > img {
+    width: auto;
+    max-width: 9rem;
+    max-height: 3.5rem;
+    object-fit: contain;
+    border-radius: var(--borda-suave);
+}
+
+header h1,
+header h2,
+header p {
+    margin: 0;
+    color: var(--cor-superficie);
+}
+
+header h1 {
+    font-size: var(--texto-grande);
+}
+
+/* Nome da ONG no cabeçalho */
+.nome-ong {
+    margin: 0;
+    color: var(--cor-superficie);
+    font-size: var(--texto-grande);
+    font-weight: 700;
+}
+
+/* 4. Navegação e menu hambúrguer */
+
+/* O botão aparece no layout para celular */
+.botao-menu {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--espaco-2);
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--cor-superficie);
+    border-radius: 0.4rem;
+    background-color: transparent;
+    color: var(--cor-superficie);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.botao-menu:hover {
+    background-color: var(--cor-secundaria);
+}
+
+/* O menu fica fechado até o botão ser acionado */
+.menu-principal {
+    display: none;
+    width: 100%;
+}
+
+.menu-principal.aberto {
+    display: block;
+}
+
+.lista-menu,
+.submenu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.lista-menu {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco-2);
+}
+
+.lista-menu a {
+    display: block;
+    padding: 0.55rem 0.75rem;
+    border-radius: 0.4rem;
+    color: var(--cor-superficie);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.lista-menu a:hover,
+.lista-menu a:focus-visible {
+    background-color: var(--cor-secundaria);
+}
+
+/* No celular, os links do submenu aparecem dentro do menu aberto */
+.submenu {
+    display: grid;
+    gap: var(--espaco-1);
+    padding-left: var(--espaco-4);
+}
+
+.submenu a {
+    font-size: var(--texto-pequeno);
+}
+
+/* No computador, o menu fica horizontal e o submenu abre ao passar o mouse
+   ou ao navegar pelo teclado */
+@media (min-width: 768px) {
+    .botao-menu {
+        display: none;
+    }
+
+    .menu-principal {
+        display: block;
+        width: auto;
+    }
+
+    .lista-menu {
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .item-com-submenu {
+        position: relative;
+    }
+
+    .submenu {
+        position: absolute;
+        z-index: 10;
+        top: 100%;
+        left: 0;
+        display: none;
+        min-width: 13rem;
+        padding: var(--espaco-2);
+        border-radius: 0.4rem;
+        background-color: var(--cor-primaria);
+        box-shadow: var(--sombra-card);
+    }
+
+    .item-com-submenu:hover > .submenu,
+    .item-com-submenu:focus-within > .submenu {
+        display: grid;
+    }
+}
+
+/* 5. Conteúdo das páginas */
+main {
+    width: min(calc(100% - 2rem), var(--largura-conteudo));
+    flex: 1;
+    margin-inline: auto;
+    padding-block: var(--espaco-6);
+}
+
+section {
+    margin-bottom: var(--espaco-5);
+}
+
+article {
+    padding: var(--espaco-4);
+    border: 1px solid rgb(36 49 58 / 18%);
+    border-radius: var(--borda-suave);
+    background-color: var(--cor-superficie);
+}
+
+/* 6. Projetos em Grid de 12 colunas */
+.projetos-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--espaco-3);
+}
+
+.projetos-grid > h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+}
+
+.projetos-grid article {
+    grid-column: span 12;
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco-3);
+    margin: 0;
+    box-shadow: var(--sombra-card);
+}
+
+.projetos-grid article img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 0.5rem;
+    object-fit: cover;
+}
+
+/* Breakpoint 1: 480px */
+@media (min-width: 480px) {
+    .projetos-grid article {
+        grid-column: span 6;
+    }
+}
+
+/* Breakpoint 2: 768px */
+@media (min-width: 768px) {
+    header {
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .projetos-grid {
+        gap: var(--espaco-4);
+    }
+
+    .projetos-grid article {
+        grid-column: span 4;
+    }
+}
+
+/* Breakpoint 3: 992px */
+@media (min-width: 992px) {
+    .projetos-grid article {
+        grid-column: span 3;
+    }
+}
+
+/* Breakpoint 4: 1200px */
+@media (min-width: 1200px) {
+    .projetos-grid {
+        gap: var(--espaco-5);
+    }
+}
+
+/* Breakpoint 5: 1400px */
+@media (min-width: 1400px) {
+    :root {
+        --largura-conteudo: 70rem;
+    }
+
+    .projetos-grid {
+        gap: var(--espaco-6);
+    }
+}
+
+/* 7. Links do conteúdo */
+main a {
+    color: var(--cor-secundaria);
+    font-weight: 700;
+    text-underline-offset: 0.2em;
+}
+
+main a:hover {
+    color: var(--cor-primaria);
+}
+
+/* 8. Formulário */
+form {
+    display: grid;
+    width: min(calc(100% - 2rem), var(--largura-formulario));
+    gap: var(--espaco-4);
+    margin: var(--espaco-6) auto;
+}
+
+/* Em telas com main, o formulário mantém alinhamento e largura */
+main form {
+    width: min(100%, var(--largura-formulario));
+    margin-block: 0;
+}
+
+fieldset {
+    display: grid;
+    gap: var(--espaco-3);
+    min-width: 0;
+    margin: 0;
+    padding: var(--espaco-4);
+    border: 1px solid rgb(36 49 58 / 25%);
+    border-radius: var(--borda-suave);
+    background-color: var(--cor-superficie);
+}
+
+legend {
+    padding-inline: var(--espaco-2);
+    color: var(--cor-primaria);
+    font-weight: 700;
+}
+
+label {
+    display: block;
+    margin: 0;
+    font-weight: 700;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="reset"]),
+select,
+textarea {
+    width: 100%;
+    min-height: 2.6rem;
+    padding: var(--espaco-2) var(--espaco-3);
+    border: 1px solid var(--cor-texto-suave);
+    border-radius: 0.35rem;
+    background-color: var(--cor-superficie);
+    color: var(--cor-texto);
+    font: inherit;
+}
+
+textarea {
+    min-height: 7rem;
+    resize: vertical;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    width: 1.1rem;
+    height: 1.1rem;
+    accent-color: var(--cor-secundaria);
+}
+
+/* Feedback visual da validação após a pessoa preencher o campo */
+form input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="reset"]):user-valid,
+form select:user-valid,
+form textarea:user-valid {
+    border: 2px solid var(--cor-secundaria);
+}
+
+form input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="reset"]):user-invalid,
+form select:user-invalid,
+form textarea:user-invalid {
+    border: 2px solid #b42318;
+}
+
+/* 9. Botões e estados de interação */
+button,
+input[type="submit"],
+input[type="reset"] {
+    justify-self: start;
+    min-height: 2.6rem;
+    padding: 0.6rem var(--espaco-4);
+    border: 0;
+    border-radius: 0.4rem;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-superficie);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+/* Quando o ponteiro passa sobre o botão */
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+    background-color: var(--cor-primaria);
+}
+
+/* Quando o botão recebe foco pelo teclado */
+button:focus-visible,
+input[type="submit"]:focus-visible,
+input[type="reset"]:focus-visible {
+    outline: 3px solid var(--cor-realce);
+    outline-offset: 3px;
+}
+
+/* Enquanto o botão está sendo pressionado */
+button:active,
+input[type="submit"]:active,
+input[type="reset"]:active {
+    transform: scale(0.98);
+}
+
+/* Quando o botão está desativado */
+button:disabled,
+input[type="submit"]:disabled,
+input[type="reset"]:disabled {
+    background-color: var(--cor-texto-suave);
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* Foco visível nos links e campos */
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--cor-realce);
+    outline-offset: 3px;
+}
+
+/* 10. Rodapé */
+footer {
+    margin-top: auto;
+    padding: var(--espaco-4) 1rem;
+    background-color: var(--cor-primaria);
+    color: var(--cor-superficie);
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer a {
+    color: var(--cor-superficie);
+}
+
+/* 11. Reduz movimentos se essa for a preferência do usuário */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Etiquetas dos projetos */
+.badge {
+    display: inline-block;
+    width: fit-content;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    background-color: var(--cor-realce);
+    color: var(--cor-primaria);
+    font-size: var(--texto-pequeno);
+    font-weight: 700;
+}
+
+/* Alerta informativo */
+.alerta {
+    margin-block: var(--espaco-4);
+    padding: var(--espaco-4);
+    border-left: 4px solid var(--cor-destaque);
+    border-radius: 0.4rem;
+    background-color: var(--cor-superficie);
+    color: var(--cor-texto);
+}
+
+/* Mensagem toast */
+.toast {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 20;
+    max-width: min(24rem, calc(100% - 2rem));
+    padding: var(--espaco-4);
+    border-radius: 0.4rem;
+    background-color: var(--cor-primaria);
+    color: var(--cor-superficie);
+    box-shadow: var(--sombra-card);
+}
+
+.toast[hidden] {
+    display: none;
+}
+
+.campo-invalido {
+  border: 2px solid #b42318;
+  outline-color: #b42318;
+}
+
+.mensagem-erro {
+  display: block;
+  margin-top: 4px;
+  color: #b42318;
+  font-size: 0.9rem;
+}
