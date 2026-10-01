@@ -261,8 +261,12 @@ header h1 {
 
     .item-com-submenu:hover > .submenu,
     .item-com-submenu:focus-within > .submenu {
-        display: grid;
+    display: grid;
     }
+
+    .item-com-submenu.submenu-fechado > .submenu {
+    display: none;
+}
 }
 
 /* 5. Conteúdo das páginas */
